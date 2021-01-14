@@ -5,8 +5,10 @@ var correct2 = question2.HTML;
 var correct3 = question3.dialup;
 var correct4 = question4.css;
 var timer = document.getElementById("timer");
+var secondsLeft = document.getElementById("seconds-left");
 var wordBlank = document.querySelector(".word-blank");
 
+// ask Brian about matching keys to indicate correct answer (look at mini-project), also should I use arrays and look for matching indexes? if userguess === question1[3]|| question2[3], etc. then send success alert?
 var question1 = {
     booleans: false,
     strings: false,
@@ -35,12 +37,11 @@ var question4 = {
     html: false
 }
 
-var secondsLeft = 100;
-
 // timer
 function setTime() {
 
     var timerInterval = setInterval(function () {
+        secondsLeft.textContent = 100;
         secondsLeft--;
         timer.textContent = secondsLeft;
 
@@ -60,6 +61,7 @@ function startButton() {
 
 setTime();
 
+// write .click function to give a correct or incorrect answer
 // write a function to progress to display the next question
 
 // if index of users answer matches index of correct answer, give alert 
