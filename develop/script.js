@@ -88,6 +88,7 @@ function startQuiz() {
     questionAreaDiv.style.display = 'block'
     setTime();
     loadQuestion();
+    // setAttribute to make homepage go away?
 }
 
 
@@ -95,11 +96,13 @@ function loadQuestion() {
     questionAreaDiv.textContent = '';
     var currentQuestion = questionBank[questionIndex];
     var currentOptions = currentQuestion.options;
+    var currentAnswer = currentQuestion.answer;
     var java = currentOptions[0];
     console.log(java);
 
+    var correctAnswer = document.getElementById('answer');
     var question = document.createElement('p');
-    questionAreaDiv.appendChild(question)
+    questionAreaDiv.appendChild(question);
 
     for (var i = 0; i < currentOptions.length; i++) {
 
@@ -108,12 +111,23 @@ function loadQuestion() {
         // add text content based on the current question
         question.textContent = currentQuestion.question
         question.id = 'question'
+        correctAnswer.textContent = currentAnswer;
+        // answer.id = 'answer'
         option.textContent = currentQuestion.options[i];
         option.id = 'option-' + Number.toString(i);
         questionAreaDiv.appendChild(option);
     }
 
     // add click event listener to each button that calls check answer
+    option.addEventListener("click", function () {
+        var guess = option.textContent;
+        if (guess === correctAnswer.textContent) {
+            wordBlank.textContent = "That's right!";
+        } else {
+            wordBlank.textContent = "Not quite right!";
+            seconds = seconds - 10;
+        }
+    })
 
     // append elements to question area
 
@@ -127,12 +141,12 @@ startButton.addEventListener("click", function () {
 // write a function to progress to display the next question
 
 // if (userChoice === correct1 || userChoice === correct2 || userChoice === correct3 || userChoice === correct4) {
-    //     wordBlank.textContent = "That's right!";
-    //     // if it is wrong, give alert & increment questions 10-second timer penalty
-    // } else {
-    //     wordBlank.textContent = "Not quite right!";
-    //     secondsLeft = (secondsLeft - 10);
-    // }
+//     wordBlank.textContent = "That's right!";
+//     // if it is wrong, give alert & increment questions 10-second timer penalty
+// } else {
+//     wordBlank.textContent = "Not quite right!";
+//     secondsLeft = (secondsLeft - 10);
+// }
 
 // if index of users answer matches index of correct answer, give alert 
 // 
@@ -142,3 +156,25 @@ startButton.addEventListener("click", function () {
 // if the index of questions reaches its length OR if timer runs out the game is over
 
 // then, save initials and score using local storage
+var submitButton = document.getElementById('submit');
+
+submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    var results = {
+        initials: saveInitials.value.trim(),
+        score: secondsLeft.value,
+    };
+
+    localStorage.setItem("results", JSON.stringify(results));
+    resultsPage();
+
+});
+
+function resultsPage() {
+    var newResult = JSON.parse(localStorage.getItem("results"));
+    if (newResult !== null) {
+        document.querySelector(".display").textContent = newResult.initials +
+            " scored a/an " + newResult.score;
+    }
+}

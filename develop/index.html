@@ -8,15 +8,21 @@
 
 <body>
     <div id="timer"></div>
+
+    <h1>Welcome to your very own coding quiz!</h1>
+    <h3>Yours and everyone else who takes it, that is!</h3>
+    <p>Press the start button to begin. And remember, 10 seconds is taken off of your time whenever you miss a question!
+        So don't mess it up!</p>
+
     <h3 id="seconds-left"></h3>
-    <div id="question-area">
-        <!-- <button id="option-1"></button>
-        <button id="option-2"></button>
-        <button id="option-3"></button>
-        <button id="option-4"></button> -->
-    </div>
+
+    <div id="question-area"></div>
     <p class="word-blank"></p>
+    <p id="answer" style="visibility: hidden;"></p>
     <button id="start" type="button" class="btn btn-primary">Start!</button>
+    <button id="submit" type="button" class="btn btn-primary">Submit</button>
+
+    <form id="saveInitials"></form>
 
     <script src="script.js"></script>
 </body>
