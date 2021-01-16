@@ -104,6 +104,7 @@ function loadQuestion() {
     var question = document.createElement('p');
     questionAreaDiv.appendChild(question);
 
+    // nested for loop? with outer for loop for answers and questions?
     for (var i = 0; i < currentOptions.length; i++) {
 
         var option = document.createElement('button')
@@ -111,21 +112,22 @@ function loadQuestion() {
         // add text content based on the current question
         question.textContent = currentQuestion.question
         question.id = 'question'
-        correctAnswer.textContent = currentAnswer;
+        correctAnswer = currentAnswer.textContent;
         // answer.id = 'answer'
         option.textContent = currentQuestion.options[i];
         option.id = 'option-' + Number.toString(i);
         questionAreaDiv.appendChild(option);
     }
 
-    // add click event listener to each button that calls check answer
+    // add click event listener to each button that calls check answer 
     option.addEventListener("click", function () {
         var guess = option.textContent;
-        if (guess === correctAnswer.textContent) {
+        if (guess === correctAnswer) {
             wordBlank.textContent = "That's right!";
+            console.log("right");
         } else {
             wordBlank.textContent = "Not quite right!";
-            seconds = seconds - 10;
+            secondsLeft = secondsLeft - 10;
         }
     })
 
@@ -153,7 +155,7 @@ startButton.addEventListener("click", function () {
 
 // correctAnswer();
 
-// if the index of questions reaches its length OR if timer runs out the game is over
+// if the index of questions reaches its length OR if timer runs out the game is over (change button visibility to visible)
 
 // then, save initials and score using local storage
 var submitButton = document.getElementById('submit');
@@ -163,7 +165,7 @@ submitButton.addEventListener("click", function (event) {
 
     var results = {
         initials: saveInitials.value.trim(),
-        score: secondsLeft.value,
+        score: seconds.value,
     };
 
     localStorage.setItem("results", JSON.stringify(results));
