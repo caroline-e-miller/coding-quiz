@@ -1,37 +1,4 @@
 // establish variables
-// var correct1 = question1.math;
-// var correct2 = question2.HTML;
-// var correct3 = question3.dialup;
-// var correct4 = question4.css;
-// var timer = document.getElementById("timer");
-// // ask Brian about matching keys to indicate correct answer (look at mini-project), also should I use arrays and look for matching indexes? if userguess === question1[3]|| question2[3], etc. then send success alert?
-// var question1 = {
-//     booleans: false,
-//     strings: false,
-//     math: true,
-//     numbers: false
-// }
-
-// var question2 = {
-//     javascript: false,
-//     python: false,
-//     HTML: true,
-//     anaconda: false
-// }
-
-// var question3 = {
-//     dialup: true,
-//     phoneup: false,
-//     keypad: false,
-//     iphone: false
-// }
-
-// var question4 = {
-//     paint: false,
-//     css: true,
-//     kss: false,
-//     html: false
-// }
 
 var userChoice = "something that indicates the thing property the user clicked on";
 var questionIndex = 0;
@@ -41,6 +8,9 @@ var secondsLeft = document.getElementById("seconds-left");
 var wordBlank = document.querySelector(".word-blank");
 var startButton = document.getElementById("start");
 var questionAreaDiv = document.getElementById('question-area');
+var title = document.getElementById("header-1");
+var subtitle = document.getElementById("header-2");
+var instructions = document.getElementById("description");
 
 var questionBank = [
     {
@@ -86,9 +56,12 @@ function startQuiz() {
     questionIndex = 0;
     maxSeconds = 100;
     questionAreaDiv.style.display = 'block'
+    title.setAttribute('style', 'visibility:hidden');
+    subtitle.setAttribute('style', 'visibility:hidden');
+    instructions.setAttribute('style', 'visibility:hidden');
+
     setTime();
     loadQuestion();
-    // setAttribute to make homepage go away?
 }
 
 
@@ -97,12 +70,14 @@ function loadQuestion() {
     var currentQuestion = questionBank[questionIndex];
     var currentOptions = currentQuestion.options;
     var currentAnswer = currentQuestion.answer;
-    var java = currentOptions[0];
-    console.log(java);
+    var test = "test";
 
-    var correctAnswer = document.getElementById('answer');
+    // var correctAnswer = document.getElementById('answer');
+    var answer = document.createElement('p');
     var question = document.createElement('p');
+    answer.setAttribute('style', 'visibility:hidden');
     questionAreaDiv.appendChild(question);
+    questionAreaDiv.appendChild(answer);
 
     // nested for loop? with outer for loop for answers and questions?
     for (var i = 0; i < currentOptions.length; i++) {
@@ -112,7 +87,9 @@ function loadQuestion() {
         // add text content based on the current question
         question.textContent = currentQuestion.question
         question.id = 'question'
-        correctAnswer = currentAnswer.textContent;
+        answer.textContent = currentAnswer;
+        // correctAnswer.textContent = currentAnswer;
+        // console.log(currentAnswer);
         // answer.id = 'answer'
         option.textContent = currentQuestion.options[i];
         option.id = 'option-' + Number.toString(i);
@@ -121,18 +98,17 @@ function loadQuestion() {
 
     // add click event listener to each button that calls check answer 
     option.addEventListener("click", function () {
+        console.log(currentAnswer);
         var guess = option.textContent;
-        if (guess === correctAnswer) {
+        if (guess === currentAnswer) {
             wordBlank.textContent = "That's right!";
             console.log("right");
         } else {
             wordBlank.textContent = "Not quite right!";
-            secondsLeft = secondsLeft - 10;
+            console.log(test);
+            secondsLeft - 10;
         }
     })
-
-    // append elements to question area
-
 }
 
 startButton.addEventListener("click", function () {
@@ -140,32 +116,19 @@ startButton.addEventListener("click", function () {
 });
 
 // write .click function to give a correct or incorrect answer
-// write a function to progress to display the next question
-
-// if (userChoice === correct1 || userChoice === correct2 || userChoice === correct3 || userChoice === correct4) {
-//     wordBlank.textContent = "That's right!";
-//     // if it is wrong, give alert & increment questions 10-second timer penalty
-// } else {
-//     wordBlank.textContent = "Not quite right!";
-//     secondsLeft = (secondsLeft - 10);
-// }
-
-// if index of users answer matches index of correct answer, give alert 
-// 
-
-// correctAnswer();
 
 // if the index of questions reaches its length OR if timer runs out the game is over (change button visibility to visible)
+var submitButton = document.getElementById('submit');
+// ADD IF STATEMENT
+submitButton.setAttribute('style', "visibility:visibile");
 
 // then, save initials and score using local storage
-var submitButton = document.getElementById('submit');
-
 submitButton.addEventListener("click", function (event) {
     event.preventDefault();
 
     var results = {
-        initials: saveInitials.value.trim(),
-        score: seconds.value,
+        initials: saveInitials.value,
+        score: secondsLeft.value,
     };
 
     localStorage.setItem("results", JSON.stringify(results));
