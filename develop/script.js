@@ -2,7 +2,7 @@
 
 var userChoice = "something that indicates the thing property the user clicked on";
 var questionIndex = 0;
-var maxSeconds = 100;
+// var maxSeconds = 100;
 var timerInterval = null;
 var secondsLeft = document.getElementById("seconds-left");
 var wordBlank = document.querySelector(".word-blank");
@@ -11,6 +11,7 @@ var questionAreaDiv = document.getElementById('question-area');
 var title = document.getElementById("header-1");
 var subtitle = document.getElementById("header-2");
 var instructions = document.getElementById("description");
+var timeInterval;
 
 var questionBank = [
     {
@@ -36,14 +37,15 @@ var questionBank = [
 ]
 
 // timer
+let seconds = 100;
+
 function setTime() {
-    let seconds = maxSeconds;
 
     timerInterval = setInterval(function () {
         secondsLeft.textContent = `${seconds} seconds`;
         seconds--;
 
-        if (seconds === 0) {
+        if (seconds <= 0) {
             clearInterval(timerInterval);
             // resultsPage();
         }
@@ -59,6 +61,8 @@ function startQuiz() {
     title.setAttribute('style', 'visibility:hidden');
     subtitle.setAttribute('style', 'visibility:hidden');
     instructions.setAttribute('style', 'visibility:hidden');
+    startButton.setAttribute('style', 'visibility:hidden');
+
 
     setTime();
     loadQuestion();
@@ -70,11 +74,11 @@ function loadQuestion() {
     var currentQuestion = questionBank[questionIndex];
     var currentOptions = currentQuestion.options;
     var currentAnswer = currentQuestion.answer;
-    var test = "test";
 
     // var correctAnswer = document.getElementById('answer');
     var answer = document.createElement('p');
     var question = document.createElement('p');
+
     answer.setAttribute('style', 'visibility:hidden');
     questionAreaDiv.appendChild(question);
     questionAreaDiv.appendChild(answer);
@@ -94,47 +98,63 @@ function loadQuestion() {
         option.textContent = currentQuestion.options[i];
         option.id = 'option-' + Number.toString(i);
         questionAreaDiv.appendChild(option);
+
+
+        // add click event listener to each button that calls check answer 
+        option.addEventListener("click", function () {
+            console.log(currentAnswer);
+            var guess = this.textContent;
+            if (guess === currentAnswer) {
+                wordBlank.textContent = "That's right!";
+            } else {
+                wordBlank.textContent = "Not quite right!";
+                seconds = seconds - 10;
+            }
+            questionIndex++;
+            if (questionIndex < questionBank.length) {
+                loadQuestion();
+            } else {
+                clearInterval(timerInterval)
+                endPage();
+            }
+
+
+        })
     }
 
-    // add click event listener to each button that calls check answer 
-    option.addEventListener("click", function () {
-        console.log(currentAnswer);
-        var guess = option.textContent;
-        if (guess === currentAnswer) {
-            wordBlank.textContent = "That's right!";
-            console.log("right");
-        } else {
-            wordBlank.textContent = "Not quite right!";
-            console.log(test);
-            secondsLeft - 10;
-        }
-    })
 }
 
 startButton.addEventListener("click", function () {
     startQuiz();
 });
 
-// write .click function to give a correct or incorrect answer
-
+var finalTime = secondsLeft.textContent;
 // if the index of questions reaches its length OR if timer runs out the game is over (change button visibility to visible)
-var submitButton = document.getElementById('submit');
-// ADD IF STATEMENT
-submitButton.setAttribute('style', "visibility:visibile");
+function endPage() {
+    var forms = document.getElementById("saveInitials");
+    forms.setAttribute('style', 'visibility:visible');
 
-// then, save initials and score using local storage
-submitButton.addEventListener("click", function (event) {
-    event.preventDefault();
+    var submitButton = document.getElementById('submit');
+    submitButton.setAttribute('style', "visibility:visibile");
 
-    var results = {
-        initials: saveInitials.value,
-        score: secondsLeft.value,
-    };
+    var letters = document.getElementById('initialsInput');
 
-    localStorage.setItem("results", JSON.stringify(results));
-    resultsPage();
+    // then, save initials and score using local storage
+    submitButton.addEventListener("click", function (event) {
+        event.preventDefault();
 
-});
+        var results = {
+            initials: letters.value,
+            score: finalTime,
+        };
+
+        console.log(results);
+
+        localStorage.setItem("results", JSON.stringify(results));
+        resultsPage();
+
+    });
+}
 
 function resultsPage() {
     var newResult = JSON.parse(localStorage.getItem("results"));
