@@ -4,31 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 
 <body>
-    <div id="timer"></div>
+    <div class="container">
+        <div id="timer"></div>
 
-    <h1 id="header-1">Welcome to your very own coding quiz!</h1>
-    <h3 id="header-2">Yours and everyone else who takes it, that is!</h3>
-    <p id="description">Press the start button to begin. And remember, 10 seconds is taken off of your time whenever you
-        miss a question!
-        So don't mess it up!</p>
+        <h1 id="header-1">Welcome to your very own coding quiz!</h1>
+        <h3 id="header-2">Yours and everyone else who takes it, that is!</h3>
+        <p id="description">Press the start button to begin. And remember, 10 seconds is taken off of your time whenever
+            you
+            miss a question!
+            So don't mess it up!</p>
 
-    <h3 id="seconds-left"></h3>
+        <h3 id="seconds-left"></h3>
 
-    <div id="question-area"></div>
-    <p class="word-blank"></p>
-    <!-- <p id="answer" style="visibility:hidden"></p> -->
-    <button id="start" type="button" class="btn btn-primary">Start!</button>
+        <div id="question-area"></div>
+        <p class="word-blank"></p>
+        <!-- <p id="answer" style="visibility:hidden"></p> -->
+        <button id="start" type="button" class="btn btn-primary">Start!</button>
 
-    <form id="saveInitials" style="visibility: hidden;">
-        <h3>Please input your initials to save your score</h3>
-        <input id="initialsInput" class="form-control" type="text" placeholder="Default input">
-        <button id="submit" style="visibility:hidden" type="button" class="btn btn-primary">Submit</button>
-    </form>
-    <div class="card">
-        <div class="card-body display">
+        <p id="finalScore"></p>
+        <form id="saveInitials" style="visibility: hidden;">
+            <h3>Please input your initials to save your score</h3>
+            <input id="initialsInput" class="form-control" type="text" placeholder="Write your initials here!">
+            <button id="submit" style="visibility:hidden" type="button" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="card" id="results" style="visibility: hidden;">
+            <div class="card-body display">
+            </div>
         </div>
     </div>
 

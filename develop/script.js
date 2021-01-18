@@ -12,6 +12,7 @@ var title = document.getElementById("header-1");
 var subtitle = document.getElementById("header-2");
 var instructions = document.getElementById("description");
 var timeInterval;
+var finalTime;
 
 var questionBank = [
     {
@@ -116,6 +117,8 @@ function loadQuestion() {
             } else {
                 clearInterval(timerInterval)
                 endPage();
+                finalTime = seconds;
+
             }
 
 
@@ -128,7 +131,6 @@ startButton.addEventListener("click", function () {
     startQuiz();
 });
 
-var finalTime = secondsLeft.textContent;
 // if the index of questions reaches its length OR if timer runs out the game is over (change button visibility to visible)
 function endPage() {
     var forms = document.getElementById("saveInitials");
@@ -139,9 +141,16 @@ function endPage() {
 
     var letters = document.getElementById('initialsInput');
 
+    var finalScore = document.createElement('p');
+    var secondsDisplay = "Your final score is " + finalTime;
+    finalScore.textContent = secondsDisplay;
+
     // then, save initials and score using local storage
     submitButton.addEventListener("click", function (event) {
         event.preventDefault();
+
+        var resultsDisplay = document.getElementById('results');
+        resultsDisplay.setAttribute('style', "visibility:visibile");
 
         var results = {
             initials: letters.value,

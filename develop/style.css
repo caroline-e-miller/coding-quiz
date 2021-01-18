@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(255, 255, 255)
+}
+
+.container {
+    margin: 50px;
+    margin-top: 50px
+}
+
+h1, h3, p {
+    text-align: center
+}
+
+button, #start {
+    margin:0 auto;
+    display: block;
+    text-align: center;
+}
+
+#initialsInput, #submit, .card {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 10px
+}
+
+#initialsInput {
+    width: 730px;
+}
