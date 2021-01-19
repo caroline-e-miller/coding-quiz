@@ -1,8 +1,7 @@
 // establish variables
 
-var userChoice = "something that indicates the thing property the user clicked on";
+// var userChoice = "something that indicates the thing property the user clicked on";
 var questionIndex = 0;
-// var maxSeconds = 100;
 var timerInterval = null;
 var secondsLeft = document.getElementById("seconds-left");
 var wordBlank = document.querySelector(".word-blank");
@@ -17,18 +16,18 @@ var finalTime;
 var questionBank = [
     {
         question: "What language is this from? 'console.log(1+2)'",
-        options: ['javascript', 'css', 'ruby', 'button'],
-        answer: 'javascript'
+        options: ['Javascript', 'CSS', 'Ruby', 'Spanish'],
+        answer: 'Javascript'
     },
     {
         question: "What is the skeleton of a webpage?",
-        options: ['CSS', 'HTML', 'femur', 'jQuery'],
+        options: ['CSS', 'jQuery', 'femur', 'HTML'],
         answer: 'HTML'
     },
     {
         question: "Which slithery type of snake also has a programming laguage named after it?",
-        options: ['copperhead', 'python', 'cobra', 'corn'],
-        answer: 'python'
+        options: ['Copperhead', 'Python', 'Cobra', 'Corn'],
+        answer: 'Python'
     },
     {
         question: "What year was Javascript first put into use?",
@@ -48,7 +47,6 @@ function setTime() {
 
         if (seconds <= 0) {
             clearInterval(timerInterval);
-            // resultsPage();
         }
 
     }, 1000);
@@ -64,7 +62,6 @@ function startQuiz() {
     instructions.setAttribute('style', 'visibility:hidden');
     startButton.setAttribute('style', 'visibility:hidden');
 
-
     setTime();
     loadQuestion();
 }
@@ -76,7 +73,6 @@ function loadQuestion() {
     var currentOptions = currentQuestion.options;
     var currentAnswer = currentQuestion.answer;
 
-    // var correctAnswer = document.getElementById('answer');
     var answer = document.createElement('p');
     var question = document.createElement('p');
 
@@ -93,9 +89,6 @@ function loadQuestion() {
         question.textContent = currentQuestion.question
         question.id = 'question'
         answer.textContent = currentAnswer;
-        // correctAnswer.textContent = currentAnswer;
-        // console.log(currentAnswer);
-        // answer.id = 'answer'
         option.textContent = currentQuestion.options[i];
         option.id = 'option-' + Number.toString(i);
         questionAreaDiv.appendChild(option);
@@ -111,6 +104,7 @@ function loadQuestion() {
                 wordBlank.textContent = "Not quite right!";
                 seconds = seconds - 10;
             }
+
             questionIndex++;
             if (questionIndex < questionBank.length) {
                 loadQuestion();
@@ -118,13 +112,9 @@ function loadQuestion() {
                 clearInterval(timerInterval)
                 endPage();
                 finalTime = seconds;
-
             }
-
-
         })
     }
-
 }
 
 startButton.addEventListener("click", function () {
@@ -140,10 +130,6 @@ function endPage() {
     submitButton.setAttribute('style', "visibility:visibile");
 
     var letters = document.getElementById('initialsInput');
-
-    var finalScore = document.createElement('p');
-    var secondsDisplay = "Your final score is " + finalTime;
-    finalScore.textContent = secondsDisplay;
 
     // then, save initials and score using local storage
     submitButton.addEventListener("click", function (event) {

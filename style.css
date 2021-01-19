@@ -8,7 +8,8 @@ body {
 }
 
 h1, h3, p {
-    text-align: center
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 button, #start {
@@ -25,4 +26,8 @@ button, #start {
 
 #initialsInput {
     width: 730px;
+}
+
+.choices {
+    color:rgb(215, 199, 247);
 }
