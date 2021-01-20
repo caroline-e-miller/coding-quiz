@@ -1,6 +1,10 @@
+// TODO: high score page
+
 // establish variables
 
 // var userChoice = "something that indicates the thing property the user clicked on";
+// timer
+let seconds = 100;
 var questionIndex = 0;
 var timerInterval = null;
 var secondsLeft = document.getElementById("seconds-left");
@@ -33,11 +37,14 @@ var questionBank = [
         question: "What year was Javascript first put into use?",
         options: ["1992", "1995", "1989", "1999"],
         answer: "1995"
+    },
+    {
+        question: "What's a terminal?",
+        options: ["A program to control and and navigate through your computer using the command line", "A hardware extension used by professional programmers", "A 2004 Tom Hanks movie", "A specific class of electrical connectors"],
+        answer: "A program to control and and navigate through your computer using the command line"
     }
 ]
 
-// timer
-let seconds = 100;
 
 function setTime() {
 
@@ -109,6 +116,7 @@ function loadQuestion() {
             if (questionIndex < questionBank.length) {
                 loadQuestion();
             } else {
+                console.log(seconds, '\n\n')
                 clearInterval(timerInterval)
                 endPage();
                 finalTime = seconds;
@@ -138,23 +146,28 @@ function endPage() {
         var resultsDisplay = document.getElementById('results');
         resultsDisplay.setAttribute('style', "visibility:visibile");
 
-        var results = {
+        var results = [{
             initials: letters.value,
             score: finalTime,
-        };
+        }];
 
-        console.log(results);
+        var scores = JSON.parse(localStorage.getItem('results'))
 
-        localStorage.setItem("results", JSON.stringify(results));
-        resultsPage();
+        if (scores) {
+            scores = scores.concat(results)
+        }
+        // results = results.concat(scores);
+
+        localStorage.setItem("results", JSON.stringify(scores));
+        resultsPage(results);
 
     });
 }
 
-function resultsPage() {
-    var newResult = JSON.parse(localStorage.getItem("results"));
-    if (newResult !== null) {
-        document.querySelector(".display").textContent = newResult.initials +
-            " scored a/an " + newResult.score;
+function resultsPage(results) {
+    // var newResult = JSON.parse(localStorage.getItem("results"));
+    if (results !== null) {
+        document.querySelector(".display").textContent = results.initials +
+            " scored a/an " + results.score;
     }
 }

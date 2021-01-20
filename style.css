@@ -9,13 +9,17 @@ body {
 
 h1, h3, p {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 button, #start {
     margin:0 auto;
     display: block;
     text-align: center;
+}
+
+#saveInitials, #start, #results {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #initialsInput, #submit, .card {
