@@ -12,3 +12,9 @@ This quiz is meant to serve as practice to prepare students for future job inter
 
 https://caroline-e-miller.github.io/coding-quiz/
 
+# Screenshots
+
+<img width="855" alt="Screen Shot 2021-01-20 at 10 33 04 PM" src="https://user-images.githubusercontent.com/70964778/105280714-0a2b3280-5b70-11eb-9799-d889ba0acde0.png">
+<img width="849" alt="Screen Shot 2021-01-20 at 10 35 32 PM" src="https://user-images.githubusercontent.com/70964778/105280718-0dbeb980-5b70-11eb-8896-9562808f2cbc.png">
+<img width="846" alt="Screen Shot 2021-01-20 at 10 35 06 PM" src="https://user-images.githubusercontent.com/70964778/105280724-131c0400-5b70-11eb-9c08-bf40aea6a029.png">
+<img width="853" alt="Screen Shot 2021-01-20 at 10 33 37 PM" src="https://user-images.githubusercontent.com/70964778/105280733-17e0b800-5b70-11eb-8f52-6ac523f93ef9.png">
