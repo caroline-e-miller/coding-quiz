@@ -1,0 +1,22 @@
+body {
+    background-color: rgb(255, 255, 255)
+}
+
+.container {
+    margin: 50px;
+    margin-top: 50px
+}
+.container {
+    margin: 50px;
+    margin-top: 50px
+}
+
+h1, h3, p {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.score-item, .score-initials, .score-score {
+    margin-left: 5px;
+    margin-right: 5px
+}

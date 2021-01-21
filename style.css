@@ -1,5 +1,6 @@
 body {
-    background-color: rgb(255, 255, 255)
+    background-color: rgb(255, 255, 255);
+    background-image: url("https://images.app.goo.gl/L3YfC7gT1YT4BpnR7.jpg")
 }
 
 .container {
@@ -16,6 +17,20 @@ button, #start {
     margin:0 auto;
     display: block;
     text-align: center;
+}
+
+#question, .answer {
+    margin-bottom: 5px
+}
+
+.option-button {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(107, 195, 224);
+    color: white;
+    border-color: white;
+    
 }
 
 #saveInitials, #start, #results {

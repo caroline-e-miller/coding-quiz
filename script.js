@@ -96,7 +96,9 @@ function loadQuestion() {
         question.textContent = currentQuestion.question
         question.id = 'question'
         answer.textContent = currentAnswer;
+        answer.className = "answer";
         option.textContent = currentQuestion.options[i];
+        option.className = "option-button";
         option.id = 'option-' + Number.toString(i);
         questionAreaDiv.appendChild(option);
 
@@ -150,7 +152,7 @@ function endPage() {
             initials: letters.value,
             score: finalTime,
         }];
-
+        console.log(results)
         var scores = JSON.parse(localStorage.getItem('results'))
 
         if (scores) {
@@ -158,8 +160,8 @@ function endPage() {
         }
         // results = results.concat(scores);
 
-        localStorage.setItem("results", JSON.stringify(scores));
-        resultsPage(results);
+        localStorage.setItem("results", JSON.stringify(results));
+        resultsPage(results[0]);
 
     });
 }
@@ -167,6 +169,7 @@ function endPage() {
 function resultsPage(results) {
     // var newResult = JSON.parse(localStorage.getItem("results"));
     if (results !== null) {
+        console.log(results.initials)
         document.querySelector(".display").textContent = results.initials +
             " scored a/an " + results.score;
     }
