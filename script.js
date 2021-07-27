@@ -1,8 +1,4 @@
-// TODO: high score page
 
-// establish variables
-
-// var userChoice = "something that indicates the thing property the user clicked on";
 // timer
 let seconds = 100;
 var questionIndex = 0;
@@ -87,7 +83,6 @@ function loadQuestion() {
     questionAreaDiv.appendChild(question);
     questionAreaDiv.appendChild(answer);
 
-    // nested for loop? with outer for loop for answers and questions?
     for (var i = 0; i < currentOptions.length; i++) {
 
         var option = document.createElement('button')
@@ -167,7 +162,6 @@ function endPage() {
 }
 
 function resultsPage(results) {
-    // var newResult = JSON.parse(localStorage.getItem("results"));
     if (results !== null) {
         console.log(results.initials)
         document.querySelector(".display").textContent = results.initials +
