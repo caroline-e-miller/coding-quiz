@@ -10,7 +10,7 @@ body {
 
 h1, h3, p {
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Gowun Batang', serif;
 }
 
 button, #start {
@@ -26,7 +26,7 @@ button, #start {
 .option-button {
     margin-bottom: 10px;
     box-shadow: 10px 5px 5px black;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Gowun Batang', serif;
     background-color: rgb(107, 195, 224);
     color: white;
     border-color: white;
