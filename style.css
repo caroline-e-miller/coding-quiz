@@ -25,7 +25,7 @@ button, #start {
 
 .option-button {
     margin-bottom: 10px;
-    border-radius: 10px;
+    box-shadow: 10px 5px 5px black;
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: rgb(107, 195, 224);
     color: white;
