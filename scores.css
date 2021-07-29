@@ -4,16 +4,13 @@ body {
 
 .container {
     margin: 50px;
-    margin-top: 50px
-}
-.container {
-    margin: 50px;
-    margin-top: 50px
+    margin-top: 50px;
+
 }
 
-h1, h3, p {
-    text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+h1, h3, p, a {
+    text-align: left;
+    font-family: 'Gowun Batang', serif;
 }
 
 .score-item, .score-initials, .score-score {
