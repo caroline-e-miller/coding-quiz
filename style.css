@@ -8,7 +8,7 @@ body {
     margin-top: 50px
 }
 
-a, h1, h3, p {
+a, h1, h3, p, input, button {
     text-align: left;
     font-family: 'Gowun Batang', serif;
 }
